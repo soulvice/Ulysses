@@ -83,7 +83,7 @@ databutton.DoClick=function( self )
 		if xgui.isInstalled then  --We can't be in offline mode to do this
 			self:SetDisabled( true )
 			RunConsoleCommand( "xgui", "refreshdata" )
-			timer.Simple( 30, function() self:SetDisabled( false ) end )
+			timer.Simple( 10, function() self:SetDisabled( false ) end )
 		end
 	end
 end
@@ -105,10 +105,6 @@ end
 ----------------
 --SKIN MANAGER--
 ----------------
---Include the extra skins in case nothing else has included them.
-for _, file in ipairs( file.Find( "skins/*.lua", "LUA" ) ) do
-	include( "skins/" .. file )
-end
 xlib.makelabel{ x=10, y=273, label="Derma Theme:", parent=xguipnl }
 xguipnl.skinselect = xlib.makecombobox{ x=10, y=290, w=150, parent=xguipnl }
 if not derma.SkinList[xgui.settings.skin] then
@@ -132,7 +128,7 @@ xguipnl.mainorder:AddColumn( "Main Modules" )
 xguipnl.mainorder.OnRowSelected = function( self, LineID, Line )
 	xguipnl.upbtnM:SetDisabled( LineID <= 1 )
 	xguipnl.downbtnM:SetDisabled( LineID >= #xgui.settings.moduleOrder )
-end 
+end
 xguipnl.updateMainOrder = function()
 	local selected = xguipnl.mainorder:GetSelectedLine() and xguipnl.mainorder:GetSelected()[1]:GetColumnText(1)
 	xguipnl.mainorder:Clear()
@@ -165,7 +161,7 @@ xguipnl.settingorder:AddColumn( "Setting Modules" )
 xguipnl.settingorder.OnRowSelected = function( self, LineID, Line )
 	xguipnl.upbtnS:SetDisabled( LineID <= 1 )
 	xguipnl.downbtnS:SetDisabled( LineID >= #xgui.settings.settingOrder )
-end 
+end
 xguipnl.updateSettingOrder = function()
 	local selected = xguipnl.settingorder:GetSelectedLine() and xguipnl.settingorder:GetSelected()[1]:GetColumnText(1)
 	xguipnl.settingorder:Clear()

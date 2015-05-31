@@ -66,13 +66,18 @@ v3.70 - *(00/00/00)*
 	* [ADD] XGUI: Ability to set the 'nextlevel' cvar from the maps tab, if you have access to "ulx map".
 	* [ADD] Reason to votekick log (Thanks, CSchulz).
 	* [ADD] Steam ID parameter to "ulx who" to lookup users by Steam ID.
+	* [ADD] Cvar "ulx meChatEnabled" added to enable or disable the /me chat feature, or set it to Sandbox only.
 	* [FIX] Changing weapons while cloaked would keep them hidden when uncloaked. (Thanks, TheRealAyCe).
 	* [FIX] XGUI: Error if the default settings/users.txt file was missing.
 	* [FIX] Gamemode list includes workshop addons now (Thanks, jason2010).
 	* [FIX] "ulx ent" parameter parsing (Thanks, Zombine).
 	* [FIX] "ulx voteban" can now ban the user even if they disconnect after the vote starts.
 	* [FIX] Vote commands now work properly from server console.
+	* [FIX] XGUI: Numerous issues with selecting a custom Derma/GWEN skin.
+	* [FIX] XGUI: Clientside settings would not save if the client's data/ulx folder did not exist.
 	* [CHANGE] Hook calls to match ULib's new format.
+	* [CHANGE] ULX convar updates will now append an entry to data/config.txt if it is not defined in the file. Previously, these changes would not be saved.
+	* [CHANGE] XGUI: No longer autoexecutes skins to ensure they get installed.
 
 v3.62 - *(03/09/15)*
 	* [ADD] "ulx return" to return target to previous location they were in before a teleport command was used (Thanks for the idea, ludalex).
