@@ -141,7 +141,7 @@ function PANEL:Think()
 
 	local tr = util.GetPlayerTrace( LocalPlayer(), LocalPlayer():GetAimVector() )
 	local trace = util.TraceLine( tr )
-	if trace.Entity and trace.Entity:IsValid() and trace.Entity:IsPlayer() and not trace.Entity:GetNWBool("disguised", false) then -- Last conditional is TTT disguiser
+	if trace.Entity and trace.Entity:IsValid() and trace.Entity:IsPlayer() and not trace.Entity:GetNWBool("disguised", false) and self:CanViewPlayerUtime(trace.entity) then -- Second last conditional is TTT disguiser
 		self.TargetSize = self.Large
 		self.playerInfo:SetPlayer( trace.Entity )
 		locktime = CurTime()
@@ -158,6 +158,19 @@ function PANEL:Think()
 
 	self.total:SetText( timeToStr( LocalPlayer():GetUTimeTotalTime() ) )
 	self.session:SetText( timeToStr( LocalPlayer():GetUTimeSessionTime() ) )
+end
+
+-----------------------------------------------------------
+--	 Name: PlayerCanViewPlayersUtime
+-----------------------------------------------------------
+function PANEL:CanViewPlayerUtime(player)
+	local allowed = true
+	local ply = LocalPlayer()
+	
+	if (ply:Team() == TEAM_SPECTATOR) or (player:Team() != ply:Team())) then allowed = false end
+	if ((ply:IsAdmin() or ply:IsSuperAdmin()) and (ply:Team() == TEAM_SPECTATOR) then allowed = true end
+	
+	return allowed
 end
 
 -----------------------------------------------------------
